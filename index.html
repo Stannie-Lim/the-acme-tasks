@@ -23,9 +23,9 @@
           const tasks = response.data;
           this.setState({ tasks });
         }
-        async destroy(task){
-          await axios.delete(`/api/tasks/${task.id}`);
-          const tasks = this.state.tasks.filter(_task => _task.id !== task.id);
+        async destroy(taskToDelete){
+          await axios.delete(`/api/tasks/${taskToDelete.id}`);
+          const tasks = this.state.tasks.filter(task => task.id !== taskToDelete.id);
           this.setState({ tasks });
         }
         async create(){
