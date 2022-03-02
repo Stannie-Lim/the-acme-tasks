@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
+import Task from './components/Task';
+
 class App extends React.Component{
   constructor(){
     super();
@@ -9,6 +11,7 @@ class App extends React.Component{
       tasks: []
     };
     this.create = this.create.bind(this);
+    this.destroy = this.destroy.bind(this);
   }
   async componentDidMount(){
     const response = await axios.get('/api/tasks');
@@ -36,7 +39,7 @@ class App extends React.Component{
           {
             tasks.map( task => {
               return (
-                <li key={task.id}>{ task.name } <button onClick={ ()=> this.destroy(task)}>x</button></li>
+                <Task key={task.id} task={task} destroy={this.destroy} />
               );
             })
           }
